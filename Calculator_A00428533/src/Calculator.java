@@ -31,7 +31,13 @@ public static max(int a,int b)
 
 	}
 	
-	
+		public static void multiply(int a,int b)
+	{   
+		int res=0;
+		res = a * b;
+		System.out.println(res);
+
+	}
 	
 	public static void main(String args[]) {
 	
