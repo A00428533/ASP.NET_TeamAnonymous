@@ -16,6 +16,22 @@ public class Calculator {
 		System.out.println(res);
 
 	}
+public static min(int a,int b)
+	{   
+		int res=0;
+		res = Math.min(a,b);
+		System.out.println(res);
+
+	}
+public static max(int a,int b)
+	{   
+		int res=0;
+		res = Math.max(a,b);
+		System.out.println(res);
+
+	}
+	
+	
 	
 	public static void main(String args[]) {
 	
