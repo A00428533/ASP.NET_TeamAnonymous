@@ -39,6 +39,18 @@ public static max(int a,int b)
 
 	}
 
+	public static void mod(int a, int b)
+	{
+		if(b == 0)
+		{
+			System.out.println("denominator cannot be zero");
+		}else{
+			int res = a%b;
+			System.out.println(res);
+		}
+		
+	}
+	
 	public static void divide(int a,int b)
 {
 	int res=0;
