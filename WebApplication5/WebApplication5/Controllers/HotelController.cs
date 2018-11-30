@@ -20,20 +20,19 @@ namespace WebApplication5.Controllers
         }
         [ActionName("Login")]
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Login(RegisterUser user)
         {
 
-            var obj = DBManager.ValidateLogin(user.txtLogin, user.txtPassword);
+            var obj = DBManager.ValidateLogin(user.UserName, user.Password);
             if (obj != null)
             {
-                Session["login"] = user.txtLogin;
-                Session["IsAdmin"] = obj.IsAdmin;
+                Session["login"] = user.UserName;
                 return Redirect("~/Hotel/ContactInformation");
 
             }
             else {
                 ViewBag.Msg = "You have entered an incorrect Username or Password";
-                ViewBag.Login = user.txtLogin;
+                ViewBag.Login = user.UserName;
             }
 
             return View("Login");
@@ -76,9 +75,26 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult ContactInformation(User user)
         {
-            
-            return RedirectToAction("Login");
 
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                string query = "Insert into [User] values(@First_Name,@Last_Name,@Street_Number,@City,@Province_State,@Country,@Postal_Code,@Phone_Number,@E_mail_Address)";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@First_Name", user.First_Name);
+                sqlCmd.Parameters.AddWithValue("@Last_Name", user.Last_Name);
+                sqlCmd.Parameters.AddWithValue("@Street_Number", user.Street_Number);
+                sqlCmd.Parameters.AddWithValue("@City", user.City);
+                sqlCmd.Parameters.AddWithValue("@Province_State", user.Province_State);
+                sqlCmd.Parameters.AddWithValue("@Country", user.Country);
+                sqlCmd.Parameters.AddWithValue("@Postal_Code", user.Postal_Code);
+                sqlCmd.Parameters.AddWithValue("@Phone_Number", user.Phone_Number);
+                sqlCmd.Parameters.AddWithValue("@E_mail_Address", user.E_mail_Address);
+
+                sqlCmd.ExecuteNonQuery();
+            }
+
+            return RedirectToAction("ContactInformation");
         }
         // GET: Hotel/Edit/5
         public ActionResult Show()

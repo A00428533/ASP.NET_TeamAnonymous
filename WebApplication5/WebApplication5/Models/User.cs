@@ -1,4 +1,4 @@
-namespace WebApplication5.Models
+﻿namespace WebApplication5.Models
 {
     using System;
     using System.Collections.Generic;
@@ -12,42 +12,35 @@ namespace WebApplication5.Models
     {
         public int UserId { get; set; }
 
-        [StringLength(50)]
-        public string txtLogin { get; set; }
-
-        [StringLength(50)]
-        public string txtPassword { get; set; }
-
-        public bool? IsAdmin { get; set; }
-
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "The First Name is required")]
         [Column("First Name")]
         [StringLength(50)]
-        [RegularExpression("^[a-zA-Z0-9%@#$^*()_+=[/]{}|\\,.?:; -]*$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ? / < > 1 2 3 4 5 6 7 8 9 0 ")]
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ? / < > 1 2 3 4 5 6 7 8 9 0 ")]
         public string First_Name { get; set; }
 
         [Display(Name = "Last Name")]
         [Required(ErrorMessage = "The Last Name is required")]
         [Column("Last Name")]
-        [RegularExpression("^[a-zA-Z0-9%@#$^*()_+=[/]{}|\\,.?:; -]*$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ?  / < > 1 2 3 4 5 6 7 8 9 0 ")]
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ?  / < > 1 2 3 4 5 6 7 8 9 0 ")]
         [StringLength(50)]
         public string Last_Name { get; set; }
 
         [Display(Name = "Street Number")]
+        [RegularExpression("^([0-9]+)$", ErrorMessage = "You have input an string. Please enter an integer value")]
         [Required(ErrorMessage = "The Street Number is required")]
         [Column("Street Number")]
         public int? Street_Number { get; set; }
 
         [Display(Name = "City")]
         [Required(ErrorMessage = "The City is required")]
-        [RegularExpression("^[a-zA-Z0-9%@#$^*()_+=[/]{}|\\,.?:; -]*$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ? / < > 1 2 3 4 5 6 7 8 9 0 ")]
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ? / < > 1 2 3 4 5 6 7 8 9 0 ")]
         [StringLength(50)]
         public string City { get; set; }
 
         [Display(Name = "Province/State")]
         [Required(ErrorMessage = "The Province/State is required")]
-        [RegularExpression("^[a-zA-Z0-9%@#$^*()_+=[/]{}|\\,.?:; -]*$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ? / < > 1 2 3 4 5 6 7 8 9 0 ")]
+        [RegularExpression("^([a-zA-Z]+)$", ErrorMessage = "You have input invalid charachters like ; : ! @ # $ % ^ * + ? / < > 1 2 3 4 5 6 7 8 9 0 ")]
         [Column("Province/State")]
         [StringLength(50)]
         public string Province_State { get; set; }
@@ -63,10 +56,12 @@ namespace WebApplication5.Models
         [StringLength(50)]
         public string Postal_Code { get; set; }
 
+    
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "The Phone Number is required")]
         [Column("Phone Number")]
         [StringLength(50)]
+        [RegularExpression(@"^\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*$", ErrorMessage = "Invalid phone number. Please enter the valid phone number")]
         public string Phone_Number { get; set; }
 
         [Display(Name = "Email address")]

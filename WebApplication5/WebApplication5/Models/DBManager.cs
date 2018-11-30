@@ -19,7 +19,7 @@ namespace WebApplication5.Models
 
         }
 
-        public static User ValidateLogin(String Login, String Password)
+        public static RegisterUser ValidateLogin(String Login, String Password)
         {
             string connectionString = @"Data Source = LAPTOP-4DCIQUFG; Initial Catalog = HotelDatabase; Integrated Security=True";
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -33,10 +33,10 @@ namespace WebApplication5.Models
                     SqlDataReader reader = sqlCmd.ExecuteReader();
                     if (reader.Read() == true)
                     {
-                        User user = new User();
+                        RegisterUser user = new RegisterUser();
                         user.UserId = reader.GetInt32(0);
-                        user.txtLogin = reader.GetString(1);
-                        user.txtPassword = reader.GetString(2);
+                        user.UserName = reader.GetString(1);
+                        user.Password = reader.GetString(2);
 
                         return user;
                     }

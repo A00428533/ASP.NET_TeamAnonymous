@@ -16,13 +16,6 @@ namespace WebApplication5.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>()
-                .Property(e => e.txtLogin)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<User>()
-                .Property(e => e.txtPassword)
-                .IsUnicode(false);
 
             modelBuilder.Entity<User>()
                 .Property(e => e.First_Name)
@@ -32,6 +25,9 @@ namespace WebApplication5.Models
                 .Property(e => e.Last_Name)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<User>()
+               .Property(e => e.Street_Number);
+              
             modelBuilder.Entity<User>()
                 .Property(e => e.City)
                 .IsUnicode(false);
