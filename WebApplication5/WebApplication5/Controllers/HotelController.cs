@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication5.Models;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+using System.Net;
 
 namespace WebApplication5.Controllers
 {
@@ -76,28 +78,38 @@ namespace WebApplication5.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ContactInformation(User user)
         {
 
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
-                sqlCon.Open();
-                string query = "Insert into [User] values(@First_Name,@Last_Name,@Street_Number,@City,@Province_State,@Country,@Postal_Code,@Phone_Number,@E_mail_Address)";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@First_Name", user.First_Name);
-                sqlCmd.Parameters.AddWithValue("@Last_Name", user.Last_Name);
-                sqlCmd.Parameters.AddWithValue("@Street_Number", user.Street_Number);
-                sqlCmd.Parameters.AddWithValue("@City", user.City);
-                sqlCmd.Parameters.AddWithValue("@Province_State", user.Province_State);
-                sqlCmd.Parameters.AddWithValue("@Country", user.Country);
-                sqlCmd.Parameters.AddWithValue("@Postal_Code", user.Postal_Code);
-                sqlCmd.Parameters.AddWithValue("@Phone_Number", user.Phone_Number);
-                sqlCmd.Parameters.AddWithValue("@E_mail_Address", user.E_mail_Address);
+                if (ModelState.IsValid)
+                {
+                    sqlCon.Open();
+                    string query = "Insert into [User] values(@First_Name,@Last_Name,@Street_Number,@City,@Province_State,@Country,@Postal_Code,@Phone_Number,@E_mail_Address)";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@First_Name", user.First_Name);
+                    sqlCmd.Parameters.AddWithValue("@Last_Name", user.Last_Name);
+                    sqlCmd.Parameters.AddWithValue("@Street_Number", user.Street_Number);
+                    sqlCmd.Parameters.AddWithValue("@City", user.City);
+                    sqlCmd.Parameters.AddWithValue("@Province_State", user.Province_State);
+                    sqlCmd.Parameters.AddWithValue("@Country", user.Country);
+                    sqlCmd.Parameters.AddWithValue("@Postal_Code", user.Postal_Code);
+                    sqlCmd.Parameters.AddWithValue("@Phone_Number", user.Phone_Number);
+                    sqlCmd.Parameters.AddWithValue("@E_mail_Address", user.E_mail_Address);
 
-                sqlCmd.ExecuteNonQuery();
+                    sqlCmd.ExecuteNonQuery();
+
+                }
+                else
+                {
+                    return Redirect("~/Hotel/NewView");
+                }
+                
             }
-
             return RedirectToAction("ContactInformation");
+
         }
         // GET: Hotel/Edit/5
         public ActionResult Show()
@@ -107,6 +119,12 @@ namespace WebApplication5.Controllers
                 return Redirect("~/Hotel/Login");
             }
             return View("Register");
+        }
+        [HttpGet]
+        public ActionResult NewView()
+        {
+
+            return View("NewView");
         }
 
         public ActionResult Logout()
@@ -147,6 +165,8 @@ namespace WebApplication5.Controllers
 
             return selectList;
         }
+
+       
 
 
     }

@@ -5,10 +5,11 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Text.RegularExpressions;
     using System.Web.Mvc;
 
     [Table("User")]
-    public partial class User
+    public partial class User : IValidatableObject
     {
         public int UserId { get; set; }
 
@@ -54,9 +55,36 @@
         [Required(ErrorMessage = "The Postal Code is required")]
         [Column("Postal Code")]
         [StringLength(50)]
+
         public string Postal_Code { get; set; }
 
-    
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+
+            if (!String.IsNullOrEmpty(Country)
+               && !String.IsNullOrEmpty(Postal_Code))
+            {
+                String emailRegex = @"^([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ])\ {0,1}(\d[ABCEGHJKLMNPRSTVWXYZ]\d)+$";
+                Regex re = new Regex(emailRegex);
+                switch (Country)
+                {
+
+                    case "Canada":
+                        if (!Regex.IsMatch(Postal_Code, @"^([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ])\ {0,1}(\d[ABCEGHJKLMNPRSTVWXYZ]\d)+$"))
+                            yield return new ValidationResult("Invalid Canada Postal Code.", new[] { "Postal_Code" });
+                        break;
+                    case "US":
+                       
+                        if (!Regex.IsMatch(Postal_Code, @"^\d{5}(?:[-\s]\d{4})?$"))
+                            yield return new ValidationResult("Invalid Canada Postal Code.", new[] { "Postal_Code" });
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "The Phone Number is required")]
         [Column("Phone Number")]
@@ -73,5 +101,6 @@
         public string E_mail_Address { get; set; }
 
         public IEnumerable<SelectListItem> Countries { get; set; }
+
     }
 }

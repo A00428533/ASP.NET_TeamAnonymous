@@ -164,7 +164,6 @@
     <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="PostalValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +208,7 @@
     <Content Include="Views\Hotel\Login.cshtml" />
     <Content Include="Views\Hotel\ContactInformation.cshtml" />
     <Content Include="Views\Hotel\Register.cshtml" />
+    <Content Include="Views\Hotel\NewView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
