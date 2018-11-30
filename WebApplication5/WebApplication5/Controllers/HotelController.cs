@@ -33,8 +33,9 @@ namespace WebApplication5.Controllers
             else {
                 ViewBag.Msg = "You have entered an incorrect Username or Password";
                 ViewBag.Login = user.UserName;
+                ViewBag.Login1 = Session["login"];
             }
-
+            Session["login"] = null;
             return View("Login");
         }
 
@@ -57,6 +58,8 @@ namespace WebApplication5.Controllers
                 sqlCmd.Parameters.AddWithValue("@EmailAddress", user.EmailAddress);
 
                 sqlCmd.ExecuteNonQuery();
+
+                Session["userName"] = user.UserName;
             }
             return RedirectToAction("ContactInformation");
 
@@ -109,6 +112,7 @@ namespace WebApplication5.Controllers
         public ActionResult Logout()
         {
             Session["login"] = null;
+            Session["userName"] = null;
             Session.Abandon();
             return Redirect("~/Hotel/Login");
 

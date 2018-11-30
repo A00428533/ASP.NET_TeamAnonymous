@@ -3,16 +3,39 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
 <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <form action="" method="post">
-        Do you want to SignIn/SignUp?  <input type="submit" value="SignIn" style="margin-left: 20px" onclick="document.location.href('/Hotel/Login')" />
+        <centre> Do you want to SignIn/SignUp?</centre>  <input type="submit" value="SignIn" style="margin-left: 20px; margin-top:10px" onclick="document.location.href('/Hotel/Login')" />
         <input type="submit" value="SignUp" style="margin-left: 10px" onclick="document.location.href('/Hotel/Register')" />
         <span>@ViewBag.Msg</span>
 
     </form>
+    @if (Session["login"] == null)
+    {
+
+    }
+    else
+    {
+        <p style=" margin-left:1000px;"><b>Welcome, @Session["login"]</b></p>
+        <input type="submit" value="LogOut" style="margin-left: 1000px"  onclick="document.location.href('/Hotel/Login')" />
+    }
+
+
+    @if (Session["userName"] == null)
+    {
+
+    }
+    else
+    {
+        <p style=" margin-left:900px;"><b>Welcome, @Session["userName"] </b></p>
+        <input type="submit" value="LogOut" style="margin-left: 900px" formmethod="post" onclick="document.location.href('/Hotel/Login')" />
+    }
+
+
+
     <br />
     <br />
 
