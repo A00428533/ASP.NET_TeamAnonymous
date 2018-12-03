@@ -11,6 +11,9 @@ namespace RoomReservation.Controllers
 
     public class RoomReservationController : Controller
     {
+        public ActionResult front() {
+            return View();
+        }
         
         [HttpGet]
         public ActionResult reserve()
