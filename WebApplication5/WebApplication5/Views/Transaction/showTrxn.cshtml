@@ -5,14 +5,96 @@
 <h2>Show Transaction Detail</h2>
 <table class="table table-bordered table-striped">
     <tr>
-        @foreach (var t in ViewBag.trxn)
-        {
-            <div>@t</div>
-        }
+        <th>transaction number</th>
+        <th>card holder name</th>
+        <th>price/room</th>
+        <th>number of room</th>
+        <th>total price</th>
+        <th>card expired date</th>
+        <th>created date</th>
+        <th>created by</th>
+        <th>card category index</th>
+        <th>card category name</th>
+        <th>reservation id</th>
+        <th>guest id</th>
     </tr>
-    
+    <tr>
+        <th>@ViewBag.trxn.id</th>
+        <th>@ViewBag.trxn.nameOnCard</th>
+        <th>@ViewBag.trxn.unitPrice</th>
+        <th>@ViewBag.trxn.quantity</th>
+        <th>@ViewBag.trxn.totalPrice</th>
+        <th>@ViewBag.trxn.expDate</th>
+        <th>@ViewBag.trxn.createdOn</th>
+        <th>@ViewBag.trxn.createdBy</th>
+        <th>@ViewBag.trxn.cardCategory</th>
+        <th>@ViewBag.trxn.CreditCardTypeName</th>
+        <th><a href="javascript:;" id="rid">@ViewBag.trxn.ReservationId</a></th>
+        <th><a href="javascript:;" id="uid">@ViewBag.trxn.UserId </a></th>
+    </tr>
 </table>
+<div style="display:none" id="res_detail">
 
+</div>
+<div style="display:none" id="user_detail">
+
+</div>
 
 
 <a href="@Url.Action("Home","Index")">Go back</a>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#rid").click(function (e) {
+                e.preventDefault();
+                var rid = $(this).text();
+                $.ajax({
+                    type: "POST",
+                    url: "/Transaction/getRes",
+                    data: { rid: rid },
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        $("#res_detail").empty();
+                        $("#res_detail").append("<h3>reservation detail</h3>");
+                        for (var index in data) {
+                            $("#res_detail").append("<div>");
+                            $("#res_detail").append(index + ":");
+                            $("#res_detail").append(data[index]);
+                            $("#res_detail").append("</div>");
+                        }
+                        
+                        $("#res_detail").show();
+                        
+                    }
+                })
+            })
+
+            $('#uid').click(function (e) {
+                e.preventDefault();
+                var uid = $(this).text();
+                $.ajax({
+                    type: "POST",
+                    url: "/Transaction/getUser",
+                    data: { uid: uid },
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#user_detail").empty();
+                        $("#user_detail").append("<h3>guest detail</h3>");
+                        for (var index in data) {
+                            $("#user_detail").append("<div>");
+                            $("#user_detail").append(index+":");
+                            $("#user_detail").append(data[index]);
+                            $("#user_detail").append("</div>");
+                        }
+                        
+                        $("#user_detail").show();
+
+                    }
+                })
+            })
+        });
+    </script>
+}

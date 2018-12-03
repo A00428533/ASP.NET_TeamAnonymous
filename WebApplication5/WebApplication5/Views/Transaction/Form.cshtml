@@ -51,6 +51,7 @@
             <label class="control-label col-md-2" for="Credit Card Number">Credit Card Number</label>
             <div class="col-md-10">
                 <input id="CardNumber" name="CardNumber" type="text" value="" required>
+                (No spaces or dashes, please)
             </div>
         </div>
 
@@ -62,14 +63,16 @@
             </div>
         </div>
 
-        <div>
-            <a href='/Transaction/GetTransaction?tid=@ViewBag.Message' target='_blank'>generate the transaction successfully</a>
-        </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button class="btn btn-default" id="submit-btn">Proceed</button>
             </div>
+        </div>
+
+        <div id="show_link" style="padding-top:10px;">
+            
         </div>
     </div>
 </form>
@@ -79,6 +82,7 @@
     <script>
         $(document).ready(function () {
             $("#submit-btn").click(function (e) {
+                
                 e.preventDefault();
                 var formData = $("#trxn-form").serialize(),
                     form = $("#trxn-form")[0];
@@ -97,7 +101,7 @@
                     card_number = $('#trxn-form').find('input[name="CardNumber"]').val(),
                     regStr = '[;:!' + '@("@")' + '#$%^*+?/<>1234567890]',
                     name_filter = new RegExp(regStr),
-                    filter = new RegExp("^(0[1-9]|1[0-2])\/20(1[6-9]|2[0-9]|31)$"),
+                    filter = new RegExp("^(0[1-9]|1[0-2])\/20(1[6-9]|2[0-9]|3[0-1])$"),
                     card_filter;
                 console.log(regStr);
                 if (name_filter.test(card_name)) {
@@ -126,7 +130,13 @@
                     data: formData,
                     dataType: 'json',
                     success: function (data) {
-                        console.log(data)
+                        if (data.success == true) {
+                            $("#show_link").empty();
+                            $("#show_link").append("generate the transaction <a href='/Transaction/ShowTrxn?tid="+data.tid+"' target='_blank'>"+data.tid+"</a> successfully");
+                            $("#show_link").show();
+                        } else {
+                            $("#show_link").hide();
+                        }
                     }
                 })
             })
