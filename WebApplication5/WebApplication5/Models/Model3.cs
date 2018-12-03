@@ -13,6 +13,7 @@ namespace WebApplication5.Models
         }
 
         public virtual DbSet<reservation_table> reservation_table { get; set; }
+        public virtual DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
