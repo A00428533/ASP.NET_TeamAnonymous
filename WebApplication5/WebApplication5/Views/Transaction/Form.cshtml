@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewBag.Title = "Transaction Form";
+}
+
+<h2>Credit Card</h2>
+<form id="trxn-form">
+    @Html.AntiForgeryToken()
+    <hr />
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Price/Room">Price/Room</label>
+            <div class="col-md-10">
+                100
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Room Number">Room Number</label>
+            <div class="col-md-10">
+                @ViewBag.roomNumber
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Total Price">Total Price</label>
+            <div class="col-md-10">
+                @ViewBag.totalPrice
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Credit Card">Credit Card</label>
+            <div class="col-md-10">
+                <input id="CardCategory" name="CardCategory" type="radio" value="2" required>
+                Visa
+                <input id="CardCategory" name="CardCategory" type="radio" value="1">
+                MasterCard
+                <input id="CardCategory" name="CardCategory" type="radio" value="3">
+                American Express
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Name on Credit Card">Name on Credit Card</label>
+            <div class="col-md-10">
+                <input id="NameOnCard" name="NameOnCard" type="text" value="" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Credit Card Number">Credit Card Number</label>
+            <div class="col-md-10">
+                <input id="CardNumber" name="CardNumber" type="text" value="" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Expiration Date">Expiration Date</label>
+            <div class="col-md-10">
+                <input id="ExpDate" name="ExpDate" type="text" value="" required>
+                MM/YYYY
+            </div>
+        </div>
+
+        <div>
+            <a href='/Transaction/GetTransaction?tid=@ViewBag.Message' target='_blank'>generate the transaction successfully</a>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button class="btn btn-default" id="submit-btn">Proceed</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#submit-btn").click(function (e) {
+                e.preventDefault();
+                var formData = $("#trxn-form").serialize(),
+                    form = $("#trxn-form")[0];
+
+                console.log(formData);
+                if (!form.checkValidity()) {
+                    if (form.reportValidity) {
+                        form.reportValidity();
+                        return false;
+                    }
+                }
+                
+                var exp_date = $('#trxn-form').find('input[name="ExpDate"]').val(),
+                    card_name = $('#trxn-form').find('input[name="NameOnCard"]').val(),
+                    card_category = $('#trxn-form').find('input[name="CardCategory"]:checked').val(),
+                    card_number = $('#trxn-form').find('input[name="CardNumber"]').val(),
+                    regStr = '[;:!' + '@("@")' + '#$%^*+?/<>1234567890]',
+                    name_filter = new RegExp(regStr),
+                    filter = new RegExp("^(0[1-9]|1[0-2])\/20(1[6-9]|2[0-9]|31)$"),
+                    card_filter;
+                console.log(regStr);
+                if (name_filter.test(card_name)) {
+                    alert('card holder name cannot contain the characters like [; : ! '+'@("@")'+' # $ % ^ * + ? / < > 1 2 3 4 5 6 7 8 9 0 ]');
+                    return false;
+                }
+                if (!filter.test(exp_date)) {
+                    alert("MM is between 01 and 12, YYYY is between 2016 and 2031");
+                    return false;
+                }
+                if (card_category == 1) {
+                    card_filter = new RegExp("^5[1-5][0-9]{14}$");
+                } else if (card_category == 2) {
+                    card_filter = new RegExp("^4[0-9]{15}$");
+                } else if (card_category == 3) {
+                    card_filter = new RegExp("3(4|7)[0-9]{14}");
+                }
+                if (!card_filter.test(card_number)) {
+                    alert("card number is incorrect");
+                    return false;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Transaction/AddTrxn",
+                    data: formData,
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data)
+                    }
+                })
+            })
+        });
+    </script>
+}
+
+
+

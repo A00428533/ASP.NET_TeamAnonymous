@@ -12,7 +12,7 @@ namespace WebApplication5.Controllers
 {
     public class HotelController : Controller
     {
-        string connectionString = @"Data Source = KOVVURISRIAA7F1\AKHIL; Initial Catalog = HotelDatabase; Integrated Security=True";
+        string connectionString = @"Data Source = DEYUKONG-NB0\SQLEXPRESS; Initial Catalog = HotelDatabase; Integrated Security=True";
 
         private Model1 db = new Model1();
         [HttpGet]

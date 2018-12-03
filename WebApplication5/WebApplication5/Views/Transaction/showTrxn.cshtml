@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Show Transaction";
+}
+<h2>Show Transaction Detail</h2>
+<table class="table table-bordered table-striped">
+    <tr>
+        @foreach (var t in ViewBag.trxn)
+        {
+            <div>@t</div>
+        }
+    </tr>
+    
+</table>
+
+
+
+<a href="@Url.Action("Home","Index")">Go back</a>
