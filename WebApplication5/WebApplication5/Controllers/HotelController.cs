@@ -46,7 +46,8 @@ namespace WebApplication5.Controllers
                 return Redirect("~/Hotel/ContactInformation");
 
             }
-            else {
+            else
+            {
                 ViewBag.Msg = "You have entered an incorrect Username or Password";
                 ViewBag.Login = user.UserName;
                 ViewBag.Login1 = Session["login"];
@@ -94,7 +95,7 @@ namespace WebApplication5.Controllers
         }
 
         [HttpPost]
-        
+
         public ActionResult ContactInformation(User user)
         {
             Session["firstName"] = user.First_Name;
@@ -118,9 +119,9 @@ namespace WebApplication5.Controllers
                 {
                     return Redirect("~/Hotel/NewView");
                 }
-                
+
             }
-           
+
 
         }
         // GET: Hotel/Edit/5
@@ -180,7 +181,7 @@ namespace WebApplication5.Controllers
             return selectList;
         }
 
-       
+
 
 
     }

@@ -13,7 +13,7 @@
             <span>@ViewBag.Msg</span>
             <br />
             <centre><p> OR<p /></centre>
-            
+
             <centre><p> <u>Book As a Guest:</u><p /></centre>
         </form>
 
@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.First_Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.First_Name, new {  @class = "form-control", @Value = Session["firstName"] } )
+                @Html.TextBoxFor(model => model.First_Name, new { @class = "form-control", @Value = Session["firstName"] }
                 @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Last_Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Last_Name, new {  @class = "form-control" , @Value= Session["lastName"] })
+                @Html.TextBoxFor(model => model.Last_Name, new { @class = "form-control", @Value = Session["lastName"] })
                 @Html.ValidationMessageFor(model => model.Last_Name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.City, new {  @class = "form-control", @Value = Session["City"] })
+                @Html.TextBoxFor(model => model.City, new { @class = "form-control", @Value = Session["City"] })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -64,7 +64,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Province_State, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Province_State, new {  @class = "form-control", @Value = Session["Province_State"] })
+                @Html.TextBoxFor(model => model.Province_State, new { @class = "form-control", @Value = Session["Province_State"] })
                 @Html.ValidationMessageFor(model => model.Province_State, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -82,7 +82,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Postal_Code, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Postal_Code, new {  @class = "form-control" , @Value = Session["Postal_Code"] })
+                @Html.TextBoxFor(model => model.Postal_Code, new { @class = "form-control", @Value = Session["Postal_Code"] })
                 @Html.ValidationMessageFor(model => model.Postal_Code, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -90,7 +90,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Phone_Number, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Phone_Number, new { @class = "form-control" , @Value = Session["Phone_Number"] })
+                @Html.TextBoxFor(model => model.Phone_Number, new { @class = "form-control", @Value = Session["Phone_Number"] })
                 @Html.ValidationMessageFor(model => model.Phone_Number, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -98,7 +98,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.E_mail_Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.E_mail_Address, new {  @class = "form-control" , @Value = Session["EmailAddress"] })
+                @Html.TextBoxFor(model => model.E_mail_Address, new { @class = "form-control", @Value = Session["EmailAddress"] })
                 @Html.ValidationMessageFor(model => model.E_mail_Address, "", new { @class = "text-danger" })
             </div>
         </div>

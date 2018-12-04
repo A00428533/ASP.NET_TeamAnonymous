@@ -1,5 +1,5 @@
-﻿
-@{
+﻿@{
+
     ViewBag.Title = "Show Transaction";
 }
 <br />
@@ -68,9 +68,9 @@
                             $("#res_detail").append(data[index]);
                             $("#res_detail").append("</div>");
                         }
-                        
+
                         $("#res_detail").show();
-                        
+
                     }
                 })
             })
@@ -88,11 +88,11 @@
                         $("#user_detail").append("<h3><u>Guest detail</u></h3>");
                         for (var index in data) {
                             $("#user_detail").append("<div>");
-                            $("#user_detail").append(index+":");
+                            $("#user_detail").append(index + ":");
                             $("#user_detail").append(data[index]);
                             $("#user_detail").append("</div>");
                         }
-                        
+
                         $("#user_detail").show();
 
                     }

@@ -11,10 +11,11 @@ namespace RoomReservation.Controllers
 
     public class RoomReservationController : Controller
     {
-        public ActionResult front() {
+        public ActionResult front()
+        {
             return View();
         }
-        
+
         [HttpGet]
         public ActionResult reserve()
         {
@@ -25,7 +26,7 @@ namespace RoomReservation.Controllers
         [HttpPost]
         public ActionResult reserve(reservation_table res)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(res);
             }
@@ -35,10 +36,10 @@ namespace RoomReservation.Controllers
                 dbModel1.SaveChanges();
             }
             ModelState.Clear();
-            ViewBag.SuccessMessage = "Data Inserted";
+            ViewBag.SuccessMessage = "Data Inserted Successfully";
             //return View("Reserve");
             return RedirectToAction("ContactInformation", "Hotel");
         }
-       
+
     }
 }

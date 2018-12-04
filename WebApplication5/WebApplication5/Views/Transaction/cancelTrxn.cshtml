@@ -1,6 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "Delete Transaction";
+                /**/
+
+                ViewBag.Title = "Delete Transaction";
 }
 <br />
 <h2>Delete Transaction</h2>
@@ -19,7 +21,7 @@
             </div>
         </div>
 
-        
+
     </div>
 </form>
 <br />
@@ -44,7 +46,7 @@
                     return false;
                 }
                 var res = confirm("Are you sure to delete transaction with id:" + tid);
-                
+
                 if (res == true) {
                     $.ajax({
                         type: "POST",
@@ -57,11 +59,11 @@
                             } else {
                                 alert("Transaction deleted successfully");
                             }
-                        
+
                         }
                     })
                 }
-                
+
             })
         });
     </script>
