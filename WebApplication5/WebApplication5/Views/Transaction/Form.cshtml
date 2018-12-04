@@ -72,17 +72,21 @@
         </div>
 
         <div id="show_link" style="padding-top:10px;">
-            
+
         </div>
     </div>
 </form>
+<br />
+<br />
+<br />
+<a href="@Url.Action("ContactInformation","Hotel")">Edit Contact information</a>
 
 @section Scripts {
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#submit-btn").click(function (e) {
-                
+
                 e.preventDefault();
                 var formData = $("#trxn-form").serialize(),
                     form = $("#trxn-form")[0];
@@ -94,7 +98,7 @@
                         return false;
                     }
                 }
-                
+
                 var exp_date = $('#trxn-form').find('input[name="ExpDate"]').val(),
                     card_name = $('#trxn-form').find('input[name="NameOnCard"]').val(),
                     card_category = $('#trxn-form').find('input[name="CardCategory"]:checked').val(),
