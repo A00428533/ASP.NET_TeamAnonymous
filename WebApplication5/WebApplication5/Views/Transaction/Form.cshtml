@@ -86,7 +86,6 @@
     <script>
         $(document).ready(function () {
             $("#submit-btn").click(function (e) {
-
                 e.preventDefault();
                 var formData = $("#trxn-form").serialize(),
                     form = $("#trxn-form")[0];
@@ -138,6 +137,7 @@
                             $("#show_link").empty();
                             $("#show_link").append("generate the transaction <a href='/Transaction/ShowTrxn?tid="+data.tid+"' target='_blank'>"+data.tid+"</a> successfully");
                             $("#show_link").show();
+                            $("#submit-btn").attr("disabled", "disabled");
                         } else {
                             $("#show_link").hide();
                         }
