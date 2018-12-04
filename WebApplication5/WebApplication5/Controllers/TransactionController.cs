@@ -245,6 +245,33 @@ namespace WebApplication5.Controllers
 
             
         }
+
+
+             
+            return View();
+        }
+
+        public JsonResult CancelTrxnAjax(string tid)
+        {
+            HotelTrxnService.MySQLAccess dao = new HotelTrxnService.MySQLAccess();
+            HotelTrxnService.TrxnWebServiceClient client = new HotelTrxnService.TrxnWebServiceClient();
+            client.setDao(dao);
+            string trxn = client.getTransaction(tid);
+            string msg = "";
+            bool res = false;
+            if (trxn == "null" || trxn.Length == 0)
+            {
+                msg = "transaction id: "+ tid + " doesn't exist";
+            }
+            else
+            {
+                res = client.removeTransaction(tid);
+            }
+
+            return Json(new { res = res, msg = msg });
+        }
+
+
     }
 
 
