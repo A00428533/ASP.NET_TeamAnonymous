@@ -74,9 +74,26 @@ namespace WebApplication5.Controllers
         {
             int Reservation_ID = 0;
             int No_of_rooms = 0;
+
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
+            string query = "Insert into [User] values(@First_Name,@Last_Name,@Street_Number,@City,@Province_State,@Country,@Postal_Code,@Phone_Number,@E_mail_Address)";
+            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+            sqlCmd.Parameters.AddWithValue("@First_Name", Session["firstName"]);
+            sqlCmd.Parameters.AddWithValue("@Last_Name", Session["lastName"]);
+            sqlCmd.Parameters.AddWithValue("@Street_Number", Session["Street_Number"]);
+            sqlCmd.Parameters.AddWithValue("@City", Session["City"]);
+            sqlCmd.Parameters.AddWithValue("@Province_State", Session["Province_State"]);
+            sqlCmd.Parameters.AddWithValue("@Country", Session["Country"]);
+            sqlCmd.Parameters.AddWithValue("@Postal_Code", Session["Postal_Code"]);
+            sqlCmd.Parameters.AddWithValue("@Phone_Number", Session["Phone_Number"]);
+            sqlCmd.Parameters.AddWithValue("@E_mail_Address", Session["EmailAddress"]);
+
+            sqlCmd.ExecuteNonQuery();
+
+
+        
 
                 string query2 = "select top(1)Reservation_ID,No_of_rooms from[reservation_table] order by Reservation_ID desc";
 

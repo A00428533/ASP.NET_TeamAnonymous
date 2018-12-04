@@ -2,7 +2,9 @@
 @{
     ViewBag.Title = "Show Transaction";
 }
-<h2>Show Transaction Detail</h2>
+<br />
+<h2><u>Show Transaction Detail</u></h2>
+<br />
 <table class="table table-bordered table-striped">
     <tr>
         <th>transaction number</th>
@@ -59,7 +61,7 @@
                     success: function (data) {
                         console.log(data);
                         $("#res_detail").empty();
-                        $("#res_detail").append("<h3>reservation detail</h3>");
+                        $("#res_detail").append("<h3><u>Reservation detail</u></h3>");
                         for (var index in data) {
                             $("#res_detail").append("<div>");
                             $("#res_detail").append(index + ":");
@@ -83,7 +85,7 @@
                     dataType: 'json',
                     success: function (data) {
                         $("#user_detail").empty();
-                        $("#user_detail").append("<h3>guest detail</h3>");
+                        $("#user_detail").append("<h3><u>Guest detail</u></h3>");
                         for (var index in data) {
                             $("#user_detail").append("<div>");
                             $("#user_detail").append(index+":");

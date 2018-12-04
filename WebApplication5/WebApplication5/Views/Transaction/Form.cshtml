@@ -67,7 +67,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-default" id="submit-btn">Proceed</button>
+                <button class="btn btn-default" id="submit-btn">Pay</button>
             </div>
         </div>
 
@@ -135,7 +135,7 @@
                     success: function (data) {
                         if (data.success == true) {
                             $("#show_link").empty();
-                            $("#show_link").append("generate the transaction <a href='/Transaction/ShowTrxn?tid="+data.tid+"' target='_blank'>"+data.tid+"</a> successfully");
+                            $("#show_link").append("Generate the transaction <a href='/Transaction/ShowTrxn?tid="+data.tid+"' target='_blank'>"+data.tid+"</a> successfully");
                             $("#show_link").show();
                             $("#submit-btn").attr("disabled", "disabled");
                         } else {
