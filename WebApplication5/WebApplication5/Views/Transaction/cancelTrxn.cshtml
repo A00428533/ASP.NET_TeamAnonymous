@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Delete Transaction";
+}
+<h2>Delete Transaction</h2>
+<form>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Transaction Number">Transaction Number</label>
+            <div class="col-md-10">
+                <input type="text" name="tid" id="tid" required />
+                <span style="padding-left:60px;"><button class="btn btn-default" id="submit-btn">Proceed</button></span>
+
+            </div>
+        </div>
+
+        
+    </div>
+</form>
+
+
+<a href="@Url.Action("Index","Home")">Go back</a>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submit-btn').click(function (e) {
+                e.preventDefault();
+                var tid = $("#tid").val();
+                if (tid.length == 0) {
+                    alert("please input the transaction number");
+                    return false;
+                }
+                var res = confirm("are you sure to delete transaction with id:" + tid);
+                
+                if (res == true) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Transaction/CancelTrxnAjax",
+                        data: { tid: tid },
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.msg.length != 0) {
+                                alert(data.msg);
+                            } else {
+                                alert("delete successfully");
+                            }
+                        
+                        }
+                    })
+                }
+                
+            })
+        });
+    </script>
+}
