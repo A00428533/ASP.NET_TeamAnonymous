@@ -246,7 +246,7 @@ namespace WebApplication5.Controllers
             
         }
 
-
+        public ActionResult cancelTrxn() { 
              
             return View();
         }
