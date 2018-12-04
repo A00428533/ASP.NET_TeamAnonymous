@@ -38,7 +38,7 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult Login(RegisterUser user)
         {
-
+            Session["firstName"] = user.UserName;
             var obj = DBManager.ValidateLogin(user.UserName, user.Password);
             if (obj != null)
             {
@@ -64,6 +64,8 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult Register(RegisterUser user)
         {
+            Session["EmailAddress"] = user.EmailAddress;
+            Session["firstName"] = user.UserName;
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
@@ -95,6 +97,15 @@ namespace WebApplication5.Controllers
         
         public ActionResult ContactInformation(User user)
         {
+            Session["firstName"] = user.First_Name;
+            Session["lastName"] = user.Last_Name;
+            Session["Street_Number"] = user.Street_Number;
+            Session["City"] = user.City;
+            Session["Province_State"] = user.Province_State;
+            Session["Country"] = user.Country;
+            Session["Postal_Code"] = user.Postal_Code;
+            Session["Phone_Number"] = user.Phone_Number;
+            Session["EmailAddress"] = user.E_mail_Address;
 
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
@@ -145,6 +156,8 @@ namespace WebApplication5.Controllers
         {
             Session["login"] = null;
             Session["userName"] = null;
+            Session["EmailAddress"] = null;
+            Session["firstName"] = null;
             Session.Abandon();
             return Redirect("~/Hotel/Login");
 

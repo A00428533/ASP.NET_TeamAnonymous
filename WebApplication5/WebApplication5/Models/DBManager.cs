@@ -21,7 +21,7 @@ namespace WebApplication5.Models
 
         public static RegisterUser ValidateLogin(String Login, String Password)
         {
-            string connectionString = @"Data Source = DEYUKONG-NB0\SQLEXPRESS; Initial Catalog = HotelDatabase; Integrated Security=True";
+            string connectionString = @"Data Source = LAPTOP-4DCIQUFG; Initial Catalog = HotelDatabase; Integrated Security=True";
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 try

@@ -18,10 +18,20 @@
 
                 </button>
             </div>
-          <center>  <h1><b><font color="white">The Dan's Den</font><b /></h1></center>
+            <center>  <h1><b><font color="white">The Dan's Den</font><b /></h1></center>
         </div>
     </div>
     <div class="container body-content">
+        @if (Session["login"] == null)
+        {
+
+        }
+        else
+        {
+            <br />
+            <p style=" margin-left:1000px;"><b>Welcome, @Session["login"]</b></p>
+            <input type="submit" value="LogOut" style="margin-left: 1000px" onclick="document.location.href('/Hotel/Logout')" />
+        }
         @RenderBody()
         <br />
         <br />
