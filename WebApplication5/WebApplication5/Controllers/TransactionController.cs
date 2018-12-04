@@ -13,7 +13,7 @@ namespace WebApplication5.Controllers
 {
     public class TransactionController : Controller
     {
-        string connectionString = @"Data Source = DEYUKONG-NB0\SQLEXPRESS; Initial Catalog = HotelDatabase; Integrated Security=True";
+        string connectionString = @"Data Source = LAPTOP-4DCIQUFG; Initial Catalog = HotelDatabase; Integrated Security=True";
         
         public ActionResult Index()
         {

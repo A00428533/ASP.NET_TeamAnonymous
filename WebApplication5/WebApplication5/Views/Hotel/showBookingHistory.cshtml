@@ -1,0 +1,31 @@
+﻿@model System.Data.DataTable
+@{
+    ViewBag.Title = "ShowBookingHistory";
+}
+
+<h1>Booking History Information</h1>
+<br/>
+<br />
+<br/>
+<br />
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>ReservationID</th>
+        <th>CheckInDate</th>
+        <th>CheckOutDate</th>
+        <th>NoOfRooms</th>
+        <th>NoOfGuests</th>
+
+    </tr>
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+    <tr>
+        <td>@Model.Rows[i][0]</td>
+        <td>@Model.Rows[i][1]</td>
+        <td>@Model.Rows[i][2]</td>
+        <td>@Model.Rows[i][3]</td>
+        <td>@Model.Rows[i][4]</td>
+    </tr>
+
+    }
+</table>

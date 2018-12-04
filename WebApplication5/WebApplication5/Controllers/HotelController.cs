@@ -7,12 +7,13 @@ using WebApplication5.Models;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Net;
+using System.Data;
 
 namespace WebApplication5.Controllers
 {
     public class HotelController : Controller
     {
-        string connectionString = @"Data Source = DEYUKONG-NB0\SQLEXPRESS; Initial Catalog = HotelDatabase; Integrated Security=True";
+        string connectionString = @"Data Source = LAPTOP-4DCIQUFG; Initial Catalog = HotelDatabase; Integrated Security=True";
 
         private Model1 db = new Model1();
         [HttpGet]
@@ -20,6 +21,19 @@ namespace WebApplication5.Controllers
         {
             return View();
         }
+
+        public ActionResult showBookingHistory()
+        {
+            DataTable dtblproduct = new DataTable();
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+            {
+                sqlCon.Open();
+                SqlDataAdapter SQLda = new SqlDataAdapter("SELECT * FROM [reservation_table]", sqlCon);
+                SQLda.Fill(dtblproduct);
+            }
+            return View(dtblproduct);
+        }
+
         [ActionName("Login")]
         [HttpPost]
         public ActionResult Login(RegisterUser user)
@@ -106,9 +120,9 @@ namespace WebApplication5.Controllers
                 {
                     return Redirect("~/Hotel/NewView");
                 }
-                
+                return RedirectToAction("Form", "Transaction");
             }
-            return RedirectToAction("ContactInformation");
+           
 
         }
         // GET: Hotel/Edit/5

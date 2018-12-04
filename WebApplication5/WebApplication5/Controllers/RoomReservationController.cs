@@ -37,7 +37,7 @@ namespace RoomReservation.Controllers
             ModelState.Clear();
             ViewBag.SuccessMessage = "Data Inserted";
             //return View("Reserve");
-            return RedirectToAction("ContactInformation");
+            return RedirectToAction("ContactInformation", "Hotel");
         }
        
     }
