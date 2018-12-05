@@ -9,4 +9,5 @@ The primary key for transaction ID is an unique auto generated alphanumeric key.
 
 # Entity Relationship Diagram 
 ![E R Diagram](ERD.png)
-The transaction table has Reservation ID and Unser ID as foreign key as shown above.
+
+The transaction table has Reservation ID and User ID as foreign key as shown above.
