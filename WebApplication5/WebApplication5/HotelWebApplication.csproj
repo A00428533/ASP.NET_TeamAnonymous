@@ -161,6 +161,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelController.cs" />
     <Compile Include="Controllers\RoomReservationController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
@@ -279,7 +280,7 @@
     <Content Include="Views\RoomReservation\reserve.cshtml" />
     <Content Include="Views\Transaction\Form.cshtml" />
     <Content Include="Views\Transaction\showTrxn.cshtml" />
-    <Content Include="Views\Transaction\cancelTrxn.cshtml" />    
+    <Content Include="Views\Transaction\cancelTrxn.cshtml" />
     <Content Include="Views\RoomReservation\front.cshtml" />
     <Content Include="Views\Hotel\showBookingHistory.cshtml" />
   </ItemGroup>

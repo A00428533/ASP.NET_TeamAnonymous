@@ -7,8 +7,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Home Page</title>
-    <marquee>For more information on Hotel Booking. Please contact us at 902-123-345.</marquee>
-
 </head>
 <body background="https://www.soneva.com/wp-content/uploads/2017/12/2-Bedroom-Water-Retreat-with-Slide_Exterior-by-Mohamed-Asfy.jpg ">
     <style>
@@ -16,8 +14,16 @@
             background-repeat: no-repeat;
             background-size: cover;
         }
+
     </style>
 
+
+    <div class="navbar-collapse collapse" style="margin-left:950px; border: solid;background-color: #000000;color: #ffffff;">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("About", "About", "Home")</li>
+            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        </ul>
+    </div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
