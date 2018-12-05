@@ -15,8 +15,6 @@ namespace WebApplication5.Controllers
     {
         string connectionString = @"Data Source = LAPTOP-4DCIQUFG; Initial Catalog = HotelDatabase; Integrated Security=True";
 
-
-
         public ActionResult Form(String tid)
         {
             if (Session["firstName"] == null || Session["lastName"] == null)
@@ -29,22 +27,6 @@ namespace WebApplication5.Controllers
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                string query = "Insert into [User] values(@First_Name,@Last_Name,@Street_Number,@City,@Province_State,@Country,@Postal_Code,@Phone_Number,@E_mail_Address)";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@First_Name", Session["firstName"]);
-                sqlCmd.Parameters.AddWithValue("@Last_Name", Session["lastName"]);
-                sqlCmd.Parameters.AddWithValue("@Street_Number", Session["Street_Number"]);
-                sqlCmd.Parameters.AddWithValue("@City", Session["City"]);
-                sqlCmd.Parameters.AddWithValue("@Province_State", Session["Province_State"]);
-                sqlCmd.Parameters.AddWithValue("@Country", Session["Country"]);
-                sqlCmd.Parameters.AddWithValue("@Postal_Code", Session["Postal_Code"]);
-                sqlCmd.Parameters.AddWithValue("@Phone_Number", Session["Phone_Number"]);
-                sqlCmd.Parameters.AddWithValue("@E_mail_Address", Session["EmailAddress"]);
-
-                sqlCmd.ExecuteNonQuery();
-
-
-
 
 
                 string query2 = "select top(1)Reservation_ID,No_of_rooms from[reservation_table] order by Reservation_ID desc";
@@ -69,15 +51,6 @@ namespace WebApplication5.Controllers
             }
             ViewBag.roomNumber = No_of_rooms;
             ViewBag.totalPrice = No_of_rooms * 100;
-            Session["firstName"] = null;
-            Session["lastName"] = null;
-            Session["Street_Number"] = null;
-            Session["City"] = null;
-            Session["Province_State"] = null;
-            Session["Country"] = null;
-            Session["Postal_Code"] = null;
-            Session["Phone_Number"] = null;
-            Session["EmailAddress"] = null;
             return View();
         }
 
@@ -91,6 +64,20 @@ namespace WebApplication5.Controllers
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
+
+                string query1 = "Insert into [User] values(@First_Name,@Last_Name,@Street_Number,@City,@Province_State,@Country,@Postal_Code,@Phone_Number,@E_mail_Address)";
+                SqlCommand sqlCmd = new SqlCommand(query1, sqlCon);
+                sqlCmd.Parameters.AddWithValue("@First_Name", Session["firstName"]);
+                sqlCmd.Parameters.AddWithValue("@Last_Name", Session["lastName"]);
+                sqlCmd.Parameters.AddWithValue("@Street_Number", Session["Street_Number"]);
+                sqlCmd.Parameters.AddWithValue("@City", Session["City"]);
+                sqlCmd.Parameters.AddWithValue("@Province_State", Session["Province_State"]);
+                sqlCmd.Parameters.AddWithValue("@Country", Session["Country"]);
+                sqlCmd.Parameters.AddWithValue("@Postal_Code", Session["Postal_Code"]);
+                sqlCmd.Parameters.AddWithValue("@Phone_Number", Session["Phone_Number"]);
+                sqlCmd.Parameters.AddWithValue("@E_mail_Address", Session["EmailAddress"]);
+
+                sqlCmd.ExecuteNonQuery();
                 string query = "select max(UserId) from [User]";
 
                 using (SqlCommand command = new SqlCommand(query, sqlCon))
@@ -129,7 +116,6 @@ namespace WebApplication5.Controllers
 
                 } // command is disposed.
 
-
             }
             HotelTrxnService.Transaction trxn = new HotelTrxnService.Transaction();
             trxn.nameOnCard = NameOnCard;
@@ -147,7 +133,15 @@ namespace WebApplication5.Controllers
             trxn.userId = UserId;
             trxn.reservationId = Reservation_ID;
             bool res = client.createTransaction(trxn);
-
+            Session["firstName"] = null;
+            Session["lastName"] = null;
+            Session["Street_Number"] = null;
+            Session["City"] = null;
+            Session["Province_State"] = null;
+            Session["Country"] = null;
+            Session["Postal_Code"] = null;
+            Session["Phone_Number"] = null;
+            Session["EmailAddress"] = null;
             return Json(new { success = res, tid = tid });
         }
 
