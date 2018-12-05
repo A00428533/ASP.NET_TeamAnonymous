@@ -19,13 +19,13 @@
 
 
 
-        @if (Session["userName"] == null)
+        @if (Session["firstName"] == null)
         {
 
         }
         else
         {
-            <p style=" margin-left:900px;"><b>Welcome, @Session["userName"] </b></p>
+            <p style=" margin-left:900px;"><b>Welcome, @Session["firstName"] </b></p>
             <input type="submit" value="LogOut" style="margin-left: 900px" formmethod="post" onclick="document.location.href('/Hotel/Logout')" />
         }
         <br />

@@ -65,24 +65,27 @@ namespace WebApplication5.Controllers
         [HttpPost]
         public ActionResult Register(RegisterUser user)
         {
-            Session["EmailAddress"] = user.EmailAddress;
-            Session["firstName"] = user.UserName;
+
+                Session["EmailAddress"] = user.EmailAddress;
+                Session["firstName"] = user.UserName;
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
-                sqlCon.Open();
-                string query = "Insert into [RegisterUser] values(@UserName,@Password,@EmailAddress)";
-                SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                sqlCmd.Parameters.AddWithValue("@UserName", user.UserName);
-                sqlCmd.Parameters.AddWithValue("@Password", user.Password);
-                sqlCmd.Parameters.AddWithValue("@EmailAddress", user.EmailAddress);
 
-                sqlCmd.ExecuteNonQuery();
+                    sqlCon.Open();
+                    string query = "Insert into [RegisterUser] values(@UserName,@Password,@EmailAddress)";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserName", user.UserName);
+                    sqlCmd.Parameters.AddWithValue("@Password", user.Password);
+                    sqlCmd.Parameters.AddWithValue("@EmailAddress", user.EmailAddress);
 
-                Session["userName"] = user.UserName;
+                    sqlCmd.ExecuteNonQuery();
+
+                    Session["userName"] = user.UserName;
+                }
+          
+                return RedirectToAction("ContactInformation");
             }
-            return RedirectToAction("ContactInformation");
-
-        }
+           
 
         [HttpGet]
         public ActionResult ContactInformation()

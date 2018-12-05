@@ -89,7 +89,7 @@
         [Required(ErrorMessage = "The Phone Number is required")]
         [Column("Phone Number")]
         [StringLength(50)]
-        [RegularExpression(@"^\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*$", ErrorMessage = "Invalid phone number. Please enter the valid phone number")]
+        [RegularExpression(@"^\D*([2-9]\d{2})(\D*)([2-9]\d{2})(\D*)(\d{4})\D*$", ErrorMessage = "Invalid phone number. Please enter the valid Canada/US phone number")]
         public string Phone_Number { get; set; }
 
         [Display(Name = "Email address")]
