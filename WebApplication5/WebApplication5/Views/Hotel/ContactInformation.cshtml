@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.First_Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.First_Name, new { @class = "form-control", @Value = Session["firstName"] }
+                @Html.TextBoxFor(model => model.First_Name, new { @class = "form-control", @Value = Session["firstName"] })
                 @Html.ValidationMessageFor(model => model.First_Name, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -46,6 +46,7 @@ namespace WebApplication5.Controllers
 
 
 
+
                 string query2 = "select top(1)Reservation_ID,No_of_rooms from[reservation_table] order by Reservation_ID desc";
 
                 using (SqlCommand command = new SqlCommand(query2, sqlCon))
@@ -68,6 +69,15 @@ namespace WebApplication5.Controllers
             }
             ViewBag.roomNumber = No_of_rooms;
             ViewBag.totalPrice = No_of_rooms * 100;
+            Session["firstName"] = null;
+            Session["lastName"] = null;
+            Session["Street_Number"] = null;
+            Session["City"] = null;
+            Session["Province_State"] = null;
+            Session["Country"] = null;
+            Session["Postal_Code"] = null;
+            Session["Phone_Number"] = null;
+            Session["EmailAddress"] = null;
             return View();
         }
 

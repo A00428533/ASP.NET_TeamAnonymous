@@ -112,7 +112,7 @@ namespace WebApplication5.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    return RedirectToAction("Form", "Transaction");
+                    return RedirectToAction("Pay", "Transaction");
 
                 }
                 else
