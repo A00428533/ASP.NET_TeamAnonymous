@@ -2,6 +2,8 @@
 @{
                 /**/
 
+                /**/
+
                 ViewBag.Title = "Transaction Form";
 }
 <br />
@@ -69,7 +71,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button class="btn btn-default" id="submit-btn">Pay</button>
+                <button class="btn btn-default" id="submit-btn" style="  border: solid;background-color: #000000;color: #ffffff;margin-left:100px;">Pay</button>
             </div>
         </div>
 
@@ -81,7 +83,7 @@
 <br />
 <br />
 <br />
-<a href="@Url.Action("ContactInformation","Hotel")">Edit Contact information</a>
+<a href="@Url.Action("ContactInformation","Hotel")" style="margin-left:150px">Edit Contact Information</a>
 
 @section Scripts {
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>

@@ -1,40 +1,44 @@
 ﻿@{
+                /**/
 
-    ViewBag.Title = "Show Transaction";
+
+                ViewBag.Title = "Show Transaction";
 }
 <br />
 <h2><u>Show Transaction Detail</u></h2>
 <br />
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>transaction number</th>
-        <th>card holder name</th>
-        <th>price/room</th>
-        <th>number of room</th>
-        <th>total price</th>
-        <th>card expired date</th>
-        <th>created date</th>
-        <th>created by</th>
-        <th>card category index</th>
-        <th>card category name</th>
-        <th>reservation id</th>
-        <th>guest id</th>
-    </tr>
-    <tr>
-        <th>@ViewBag.trxn.id</th>
-        <th>@ViewBag.trxn.nameOnCard</th>
-        <th>@ViewBag.trxn.unitPrice</th>
-        <th>@ViewBag.trxn.quantity</th>
-        <th>@ViewBag.trxn.totalPrice</th>
-        <th>@ViewBag.trxn.expDate</th>
-        <th>@ViewBag.trxn.createdOn</th>
-        <th>@ViewBag.trxn.createdBy</th>
-        <th>@ViewBag.trxn.cardCategory</th>
-        <th>@ViewBag.trxn.CreditCardTypeName</th>
-        <th><a href="javascript:;" id="rid">@ViewBag.trxn.ReservationId</a></th>
-        <th><a href="javascript:;" id="uid">@ViewBag.trxn.UserId </a></th>
-    </tr>
-</table>
+<div style="background-color:white">
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>transaction number</th>
+            <th>card holder name</th>
+            <th>price/room</th>
+            <th>number of room</th>
+            <th>total price</th>
+            <th>card expired date</th>
+            <th>created date</th>
+            <th>created by</th>
+            <th>card category index</th>
+            <th>card category name</th>
+            <th>reservation id</th>
+            <th>guest id</th>
+        </tr>
+        <tr>
+            <th>@ViewBag.trxn.id</th>
+            <th>@ViewBag.trxn.nameOnCard</th>
+            <th>@ViewBag.trxn.unitPrice</th>
+            <th>@ViewBag.trxn.quantity</th>
+            <th>@ViewBag.trxn.totalPrice</th>
+            <th>@ViewBag.trxn.expDate</th>
+            <th>@ViewBag.trxn.createdOn</th>
+            <th>@ViewBag.trxn.createdBy</th>
+            <th>@ViewBag.trxn.cardCategory</th>
+            <th>@ViewBag.trxn.CreditCardTypeName</th>
+            <th><a href="javascript:;" id="rid">@ViewBag.trxn.ReservationId</a></th>
+            <th><a href="javascript:;" id="uid">@ViewBag.trxn.UserId </a></th>
+        </tr>
+    </table>
+</div>
 <div style="display:none" id="res_detail">
 
 </div>

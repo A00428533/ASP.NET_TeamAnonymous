@@ -6,28 +6,30 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>front</title>
+    <title>Home Page</title>
+    <marquee>For more information on Hotel Booking. Please contact us at 902-123-345.</marquee>
+
 </head>
-<body background ="https://www.soneva.com/wp-content/uploads/2017/12/2-Bedroom-Water-Retreat-with-Slide_Exterior-by-Mohamed-Asfy.jpg ">
-    <style >
-        body{
-            background-repeat :no-repeat;
-            background-size :cover;
-             }
+<body background="https://www.soneva.com/wp-content/uploads/2017/12/2-Bedroom-Water-Retreat-with-Slide_Exterior-by-Mohamed-Asfy.jpg ">
+    <style>
+        body {
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     </style>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <center>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Booking"  class="hero" formaction="/RoomReservation/reserve" formmethod="get"  />
-                <input type="submit" value="Booking History" class="hero" formaction="/Hotel/showBookingHistory" formmethod="get" style=" margin-top:150px; margin-right:1500px"  />
-                <input type="submit" value="Cancel Transaction" class="hero" formaction="/Transaction/cancelTrxn" formmethod="get" style="margin-top:150px;" />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <center>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Booking" class="hero" formaction="/RoomReservation/reserve" formmethod="get" />
+                    <input type="submit" value="Booking History" class="hero" formaction="/Hotel/showBookingHistory" formmethod="get" style=" margin-top:150px; margin-right:1500px" />
+                    <input type="submit" value="Cancel Transaction" class="hero" formaction="/Transaction/cancelTrxn" formmethod="get" style="margin-top:150px;" />
+                </div>
             </div>
-        </div>
-    </center>
-}
+        </center>
+    }
 </body>
 </html>

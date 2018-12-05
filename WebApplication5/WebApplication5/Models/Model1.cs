@@ -27,7 +27,7 @@ namespace WebApplication5.Models
 
             modelBuilder.Entity<User>()
                .Property(e => e.Street_Number);
-              
+
             modelBuilder.Entity<User>()
                 .Property(e => e.City)
                 .IsUnicode(false);

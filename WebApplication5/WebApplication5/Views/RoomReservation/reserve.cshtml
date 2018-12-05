@@ -3,10 +3,12 @@
 @{
                 /**/
 
+                /**/
+
                 ViewBag.Title = "reserve";
 }
-
-<h2>Welcome To Reservation</h2>
+<br />
+<h2>Reservation Details</h2>
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 @section Scripts {
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
@@ -61,11 +63,11 @@
                 @Html.ValidationMessageFor(model => model.No_of_guests, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Proceed" class="btn btn-default" formaction="/RoomReservation/reserve" formmethod="post" />
-            </div>
+        <br />
+        <div class="reserve">
+            @*<div class="col-md-offset-2 col-md-10">*@
+            <input type="submit" value="Reserve" class="btn btn-default" formaction="/RoomReservation/reserve" formmethod="post" style="  border: solid;background-color: #000000;color: #ffffff;margin-left:200px;" />
+            @*</div>*@
         </div>
     </div>
 }
@@ -74,4 +76,4 @@
 <br />
 <br />
 <br />
-<a href="@Url.Action("front","RoomReservation")">Return To Home Page</a>
+<a href="@Url.Action("front","RoomReservation")" style="margin-left:100px;">Return To Home Page</a>

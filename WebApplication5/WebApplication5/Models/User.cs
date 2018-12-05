@@ -74,7 +74,7 @@
                             yield return new ValidationResult("Invalid Canada Postal Code.", new[] { "Postal_Code" });
                         break;
                     case "US":
-                       
+
                         if (!Regex.IsMatch(Postal_Code, @"^\d{5}(?:[-\s]\d{4})?$"))
                             yield return new ValidationResult("Invalid Canada Postal Code.", new[] { "Postal_Code" });
                         break;
